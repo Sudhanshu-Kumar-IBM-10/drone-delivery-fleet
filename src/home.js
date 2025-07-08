@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Package, Zap, Shield, Clock, Play, ChevronRight, MapPin } from 'lucide-react';
-import './home.css'
+import './home.css';
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,19 +15,19 @@ const Home = () => {
   }, []);
 
   const features = [
-    { icon: Zap, title: "Lightning Fast", desc: "30-min delivery anywhere in the city", color: "from-yellow-400 to-orange-500" },
-    { icon: Shield, title: "Ultra Secure", desc: "Military-grade tracking & protection", color: "from-blue-400 to-purple-500" },
-    { icon: Clock, title: "24/7 Service", desc: "Round-the-clock delivery availability", color: "from-green-400 to-teal-500" }
+    { icon: Zap, title: "Lightning Fast", desc: "30-min delivery anywhere in the city", color: "feature-icon-yellow" },
+    { icon: Shield, title: "Ultra Secure", desc: "Military-grade tracking & protection", color: "feature-icon-blue" },
+    { icon: Clock, title: "24/7 Service", desc: "Round-the-clock delivery availability", color: "feature-icon-green" }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white overflow-hidden">
+    <div className="main-container">
       {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="bg-overlay">
         {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className={`absolute w-2 h-2 bg-white rounded-full animate-pulse opacity-20`}
+            className="bg-dot"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -39,100 +39,98 @@ const Home = () => {
       </div>
 
       {/* Navigation */}
-      <nav className={`relative z-10 p-6 flex justify-between items-center transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+      <nav className={`nav ${isVisible ? 'nav-visible' : 'nav-hidden'}`}>
+        <div className="nav-brand">
+          <div className="nav-logo">
             <Package className="w-6 h-6 text-white" />
           </div>
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+          <h1 className="nav-title">
             SkySwift
           </h1>
         </div>
         
-        <div className="hidden md:flex space-x-8">
+        <div className="nav-menu">
           {['Services', 'Coverage', 'Pricing', 'About'].map((item, i) => (
             <button 
               key={item}
-              className="relative group text-gray-300 hover:text-white transition-colors duration-300"
-              style={{ animationDelay: `${i * 0.1}s` }}
+              className={`nav-menu-item delay-${i * 100}`}
             >
               {item}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
             </button>
           ))}
         </div>
         
-        <button className="bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-2 rounded-full hover:from-cyan-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/25">
+        <button className="nav-cta">
           Download App
         </button>
       </nav>
 
       {/* Hero Section */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-32">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}>
-            <h2 className="text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+      <div className="hero">
+        <div className="hero-grid">
+          <div className={`hero-content ${isVisible ? 'hero-content-visible' : 'hero-content-hidden'}`}>
+            <h2 className="hero-title">
+              <span className="hero-title-gradient1">
                 Future
               </span>
               <br />
-              <span className="text-white">Delivered</span>
+              <span>Delivered</span>
               <br />
-              <span className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+              <span className="hero-title-gradient2">
                 Today
               </span>
             </h2>
             
-            <p className="text-xl text-gray-300 mb-8 max-w-lg leading-relaxed">
+            <p className="hero-subtitle">
               Experience the next generation of delivery with autonomous drones that bring your packages to your doorstep in minutes, not hours.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <button className="group bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full font-semibold hover:from-cyan-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-cyan-500/25 flex items-center justify-center">
-                <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-300" />
+            <div className="hero-buttons">
+              <button className="hero-btn-primary">
+                <Play className="w-5 h-5 icon-hover" />
                 Track Your Delivery
-                <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                <ChevronRight className="w-5 h-5 icon-translate" />
               </button>
               
-              <button className="group border-2 border-white/30 px-8 py-4 rounded-full font-semibold hover:bg-white/10 backdrop-blur-sm transition-all duration-300 flex items-center justify-center">
-                <MapPin className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-300" />
+              <button className="hero-btn-secondary">
+                <MapPin className="w-5 h-5 icon-hover" />
                 Check Coverage
               </button>
             </div>
             
-            <div className="flex items-center space-x-8 text-sm text-gray-400">
-              <div className="flex items-center">
-                <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+            <div className="hero-stats">
+              <div className="hero-stat">
+                <div className="hero-stat-dot hero-stat-dot-green"></div>
                 <span>127 Active Drones</span>
               </div>
-              <div className="flex items-center">
-                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></div>
+              <div className="hero-stat">
+                <div className="hero-stat-dot hero-stat-dot-blue"></div>
                 <span>2.3k Deliveries Today</span>
               </div>
             </div>
           </div>
           
           {/* Animated Drone Visualization */}
-          <div className={`relative transition-all duration-1000 delay-500 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}>
-            <div className="relative w-full h-96 flex items-center justify-center">
+          <div className={`drone-container ${isVisible ? 'drone-container-visible' : 'drone-container-hidden'}`}>
+            <div className="drone-wrapper">
               {/* Drone */}
-              <div className="relative animate-bounce">
-                <div className="w-32 h-32 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl shadow-2xl shadow-cyan-500/25 flex items-center justify-center transform hover:scale-110 transition-all duration-300">
+              <div className="drone">
+                <div className="drone-body">
                   <Package className="w-16 h-16 text-white" />
                 </div>
                 
                 {/* Propellers */}
-                <div className="absolute -top-4 -left-4 w-8 h-8 bg-gradient-to-r from-gray-400 to-gray-600 rounded-full animate-spin"></div>
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-gray-400 to-gray-600 rounded-full animate-spin"></div>
-                <div className="absolute -bottom-4 -left-4 w-8 h-8 bg-gradient-to-r from-gray-400 to-gray-600 rounded-full animate-spin"></div>
-                <div className="absolute -bottom-4 -right-4 w-8 h-8 bg-gradient-to-r from-gray-400 to-gray-600 rounded-full animate-spin"></div>
+                <div className="propeller propeller-tl"></div>
+                <div className="propeller propeller-tr"></div>
+                <div className="propeller propeller-bl"></div>
+                <div className="propeller propeller-br"></div>
               </div>
               
               {/* Flight Path */}
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
-                <div className="absolute top-3/4 right-1/4 w-2 h-2 bg-blue-400 rounded-full animate-ping animation-delay-1000"></div>
-                <div className="absolute bottom-1/4 left-1/2 w-2 h-2 bg-purple-400 rounded-full animate-ping animation-delay-2000"></div>
+              <div className="flight-path">
+                <div className="flight-dot flight-dot-1"></div>
+                <div className="flight-dot flight-dot-2"></div>
+                <div className="flight-dot flight-dot-3"></div>
               </div>
             </div>
           </div>
@@ -140,15 +138,15 @@ const Home = () => {
       </div>
 
       {/* Features Section */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pb-20">
-        <div className="grid md:grid-cols-3 gap-8">
+      <div className="features">
+        <div className="features-grid">
           {features.map((feature, i) => {
             const Icon = feature.icon;
             return (
               <div
                 key={i}
-                className={`group relative p-8 rounded-2xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-500 cursor-pointer transform hover:scale-105 ${
-                  activeFeature === i ? 'bg-white/10 shadow-xl' : 'bg-white/5'
+                className={`feature-card group ${
+                  activeFeature === i ? 'feature-card-active' : 'feature-card-inactive'
                 }`}
                 style={{
                   animationDelay: `${i * 0.2}s`,
@@ -158,19 +156,17 @@ const Home = () => {
                 }}
                 onMouseEnter={() => setActiveFeature(i)}
               >
-                <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300 shadow-lg`}>
+                <div className={`feature-icon ${feature.color}`}>
                   <Icon className="w-8 h-8 text-white" />
                 </div>
                 
-                <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-cyan-400 transition-colors duration-300">
+                <h3 className="feature-title">
                   {feature.title}
                 </h3>
                 
-                <p className="text-gray-300 leading-relaxed group-hover:text-white transition-colors duration-300">
+                <p className="feature-desc">
                   {feature.desc}
                 </p>
-                
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
               </div>
             );
           })}
@@ -178,8 +174,8 @@ const Home = () => {
       </div>
 
       {/* Stats Section */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pb-20">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div className="stats">
+        <div className="stats-grid">
           {[
             { number: "15", label: "Minutes", suffix: "avg" },
             { number: "99.9", label: "Accuracy", suffix: "%" },
@@ -188,13 +184,14 @@ const Home = () => {
           ].map((stat, i) => (
             <div
               key={i}
-              className={`text-center group transition-all duration-1000 delay-${i * 100} ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+              className={`stat-item ${isVisible ? 'stat-item-visible' : 'stat-item-hidden'}`}
+              style={{ transitionDelay: `${i * 0.1}s` }}
             >
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+              <div className="stat-number">
                 {stat.number}
-                <span className="text-xl">{stat.suffix}</span>
+                <span className="stat-suffix">{stat.suffix}</span>
               </div>
-              <div className="text-gray-400 group-hover:text-white transition-colors duration-300">
+              <div className="stat-label">
                 {stat.label}
               </div>
             </div>
@@ -203,19 +200,19 @@ const Home = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 pb-20 text-center">
-        <div className={`transition-all duration-1000 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <h3 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+      <div className="cta">
+        <div className={`cta-content ${isVisible ? 'cta-content-visible' : 'cta-content-hidden'}`}>
+          <h3 className="cta-title">
             Ready to Experience the Future?
           </h3>
           
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+          <p className="cta-subtitle">
             Join thousands of satisfied customers who've already made the switch to drone delivery.
           </p>
           
-          <button className="group bg-gradient-to-r from-cyan-500 to-blue-600 px-12 py-4 rounded-full font-semibold text-lg hover:from-cyan-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-cyan-500/25">
-            <span className="group-hover:mr-2 transition-all duration-300">Get Started Now</span>
-            <ChevronRight className="w-5 h-5 inline-block ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+          <button className="cta-button group">
+            <span className="cta-button-text">Get Started Now</span>
+            <ChevronRight className="w-5 h-5 cta-button-icon" />
           </button>
         </div>
       </div>
@@ -223,4 +220,4 @@ const Home = () => {
   );
 };
 
-export default Home ;
+export default Home;

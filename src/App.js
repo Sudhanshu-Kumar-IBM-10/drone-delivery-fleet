@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import BatteryBar from "./components/BatteryBar";
 import StatusBadge from "./components/StatusBadge";
 import { mockDrones } from "./data/mockDrones";
+import DroneMap from "../src/pages/Leaflets"
 import "./App.css";
 import Home from "./home";
 import './home.css'
@@ -13,6 +14,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDroneLocation, setSelectedDroneLocation] = useState(null);
   const [selectedDrone, setSelectedDrone] = useState(null);
+  const [navigation, setnavigation] = useState("home");
   const dronesPerPage = 14; // Show 14 drones per page
 
   // Mock coordinates for the drones (simulating street positions)

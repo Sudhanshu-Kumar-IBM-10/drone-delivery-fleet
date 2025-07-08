@@ -206,6 +206,12 @@ function App() {
               <strong>{selectedDroneLocation}</strong>
             </p>
 
+            <div style={{ width: "100%", height: "90px", marginTop: "20px" }}>
+              <DroneMap />
+            </div>
+
+
+
             <div style={{ position: "relative", marginTop: "20px" }}>
               {/* Street map background */}
               <div
@@ -213,24 +219,28 @@ function App() {
                   position: "relative",
                   backgroundImage: "url('https://via.placeholder.com/800x600?text=Street+Map')", // Placeholder image for street map
                   backgroundSize: "cover",
-                  width: "800px",
-                  height: "600px",
+                  width: "500",
+                  height: "500px",
                   borderRadius: "8px",
                 }}
               >
-                {/* Drone marker on the map */}
+                {/* Drone marker styled as a pin and centered */}
                 <div
                   style={{
                     position: "absolute",
-                    top: droneLocations[selectedDroneLocation]?.top,
-                    left: droneLocations[selectedDroneLocation]?.left,
-                    width: "15px",
-                    height: "15px",
-                    backgroundColor: "red",
-                    borderRadius: "50%",
-                    zIndex: 10,
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -100%)",
+                    width: "0",
+                    height: "0",
+                    borderLeft: "10px solid transparent",
+                    borderRight: "10px solid transparent",
+                    borderBottom: "20px solid red", // pin color
+                    zIndex: 100,
+                    cursor: "pointer",
                   }}
                 ></div>
+
               </div>
             </div>
 

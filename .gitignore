@@ -1,0 +1,11 @@
+*node_modules
+dist
+coverage
+test-report.html
+node_modules
+reports
+.npmrc
+.vscode/launch.json
+.vscode/settings.json
+sonar.service.softwareag.com
+.DS_Store

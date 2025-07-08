@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import BatteryBar from "./components/BatteryBar";
 import StatusBadge from "./components/StatusBadge";
 import { mockDrones } from "./data/mockDrones";
+import "./App.css";
 
 function App() {
   const [drones, setDrones] = useState([]);
@@ -61,8 +62,13 @@ function App() {
   };
 
   return (
-    <div style={{ maxWidth: 900, margin: "2rem auto", fontFamily: "Arial, sans-serif" }}>
-      <h1>acme.ai Drone Delivery Fleet Dashboard</h1>
+    <>
+    <header>
+        <h1>Drone Delivery Fleet</h1>
+    </header>
+    <div style={{ maxWidth: "100%", margin: "4rem 16px", fontFamily: "Arial, sans-serif" }}>
+
+      <h1>Fleet Dashboard</h1>
 
       <div style={{ marginBottom: 20 }}>
         <label htmlFor="statusFilter">Filter by Status: </label>
@@ -244,6 +250,7 @@ function App() {
         </div>
       )}
     </div>
+    </>
   );
 }
 

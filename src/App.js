@@ -3,6 +3,7 @@ import BatteryBar from "./components/BatteryBar";
 import StatusBadge from "./components/StatusBadge";
 import { mockDrones } from "./data/mockDrones";
 import "./App.css";
+import Home from "./home";
 
 function App() {
   const [drones, setDrones] = useState([]);
@@ -63,6 +64,7 @@ function App() {
 
   return (
     <>
+    {/* <Home /> */}
     <header>
         <h1>Drone Delivery Fleet</h1>
     </header>
